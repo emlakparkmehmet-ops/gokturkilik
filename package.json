@@ -1,11 +1,10 @@
 {
   "name": "gokturkilik",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
+  "description": "Göktürk İlik Sigorta — statik tanıtım ve teklif sitesi",
   "scripts": {
-    "start": "npx serve -s ."
-  },
-  "dependencies": {
-    "serve": "^14.2.4"
+    "start": "npx --yes serve . -l 3000",
+    "dev": "npx --yes serve . -l 3000"
   }
 }

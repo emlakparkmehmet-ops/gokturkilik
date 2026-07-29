@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /assets/source/
+
+Sitemap: https://gokturkiliksigorta.com/sitemap.xml

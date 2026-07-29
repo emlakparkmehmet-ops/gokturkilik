@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0B132B">
 
   <!-- Primary SEO Meta Tags -->
   <title>Göktürk İlik Sigorta | Trafik, Kasko, Sağlık, DASK & Konut Sigortası Teklifi Al</title>
@@ -12,11 +13,19 @@
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://gokturkiliksigorta.com/">
 
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
   <!-- OpenGraph / Facebook SEO -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gokturkiliksigorta.com/">
   <meta property="og:title" content="Göktürk İlik Sigorta - Güvenli Yarınlar İçin En Uygun Sigorta Teklifleri">
   <meta property="og:description" content="Trafik, Kasko, Sağlık ve Ev Sigortasında en doğru teminat ve en iyi fiyat tekliflerini anında keşfedin.">
+  <meta property="og:image" content="https://gokturkiliksigorta.com/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Göktürk İlik Sigorta - Trafik, Kasko, Sağlık, DASK ve Konut sigortası">
   <meta property="og:locale" content="tr_TR">
   <meta property="og:site_name" content="Göktürk İlik Sigorta">
 
@@ -24,12 +33,24 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Göktürk İlik Sigorta | En Uygun Sigorta Poliçeleri">
   <meta name="twitter:description" content="30+ Sigorta şirketinden anında fiyat teklifi alın. Güvenilir ve hızlı acente hizmeti.">
+  <meta name="twitter:image" content="https://gokturkiliksigorta.com/assets/og-image.jpg">
 
-  <!-- Google Fonts & Font Awesome Icons -->
+  <!-- Fonts & Icons (paralel indirilsin diye CSS @import yerine <link>) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preload" as="image" href="assets/logo.png">
   <link rel="stylesheet" href="styles.css">
+
+  <!-- JS kapalıysa/başarısızsa scroll-reveal içeriği gizli bırakmasın -->
+  <noscript>
+    <style>
+      [data-reveal] { opacity: 1 !important; transform: none !important; }
+      .splash-screen { display: none !important; }
+    </style>
+  </noscript>
 
   <!-- ==========================================================================
        GEO & AI Structured Data (JSON-LD Schemas for ChatGPT, Perplexity & Google)
@@ -39,7 +60,8 @@
     "@context": "https://schema.org",
     "@type": "InsuranceAgency",
     "name": "Göktürk İlik Sigorta",
-    "image": "https://gokturkiliksigorta.com/assets/logo.svg",
+    "image": "https://gokturkiliksigorta.com/assets/og-image.jpg",
+    "logo": "https://gokturkiliksigorta.com/assets/logo.png",
     "@id": "https://gokturkiliksigorta.com/#agency",
     "url": "https://gokturkiliksigorta.com/",
     "telephone": "+905075950731",
@@ -153,21 +175,38 @@
 </head>
 <body>
 
+  <a href="#main" class="skip-link">İçeriğe geç</a>
+
   <!-- ==========================================================================
-       Glowing Star Splash Screen Intro
+       Splash Screen — CSS animasyonu ile kendi kendine kapanır (JS'siz de çalışır)
        ========================================================================== -->
-  <div id="introSplash" class="splash-screen">
+  <div id="introSplash" class="splash-screen" role="presentation" aria-hidden="true">
     <div class="splash-content">
       <div class="star-glow-container">
         <div class="star-burst"></div>
+        <div class="star-ring"></div>
         <div class="star-sparkle">★</div>
-        <img src="assets/logo-white.png" alt="Göktürk İlik Sigorta" class="splash-logo">
+        <img src="assets/logo.png" alt="" width="880" height="349" class="splash-logo">
+        <div class="splash-shine"></div>
       </div>
       <h2 class="splash-welcome">Göktürk İlik Sigorta'ya <span class="gradient-text">Hoş Geldiniz</span></h2>
       <p class="splash-tagline">Güvenli Yarınlar İçin Doğru Teminat &amp; En İyi Fiyat</p>
-      <div class="splash-loader"></div>
+      <div class="splash-loader"><span></span></div>
     </div>
   </div>
+
+  <!-- Dekoratif arka plan katmanları (aurora + ışın + grain) -->
+  <div class="bg-stage" aria-hidden="true">
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
+    <div class="bg-beams"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-grain"></div>
+  </div>
+
+  <!-- Masaüstünde imleci takip eden yumuşak ışık -->
+  <div class="cursor-glow" aria-hidden="true"></div>
 
   <!-- ==========================================================================
        Header Navigation
@@ -175,12 +214,13 @@
   <header class="header">
     <div class="container nav-container">
       <a href="#hero" class="brand-logo" title="Göktürk İlik Sigorta">
-        <img src="assets/logo.png" alt="Göktürk İlik Sigorta Logo" width="220" height="60">
+        <img src="assets/logo.png" alt="Göktürk İlik Sigorta Logo" width="880" height="349">
       </a>
 
-      <nav class="nav-links">
+      <nav class="nav-links" id="primaryNav" aria-label="Ana menü">
         <a href="#hero" class="nav-link active">Anasayfa</a>
         <a href="#services" class="nav-link">Hizmetlerimiz</a>
+        <a href="#process" class="nav-link">Nasıl Çalışır?</a>
         <a href="#why-us" class="nav-link">Neden Biz?</a>
         <a href="#damage-guide" class="nav-link">Hasar Destek</a>
         <a href="#faq" class="nav-link">SSS</a>
@@ -188,19 +228,22 @@
       </nav>
 
       <div class="nav-actions">
-        <a href="tel:05075950731" class="btn btn-outline" title="Bizi Arayın">
-          <i class="fas fa-phone-alt"></i> Hızlı Arama
+        <a href="tel:+905075950731" class="btn btn-outline" title="Bizi Arayın">
+          <i class="fas fa-phone-alt" aria-hidden="true"></i> Hızlı Arama
         </a>
         <a href="#quote" class="btn btn-accent">
-          <i class="fas fa-calculator"></i> Teklif Al
+          <i class="fas fa-calculator" aria-hidden="true"></i> Teklif Al
         </a>
-        <button class="mobile-toggler" aria-label="Menüyü Aç/Kapat">
-          <i class="fas fa-bars"></i>
+        <button type="button" class="mobile-toggler" aria-label="Menüyü aç" aria-expanded="false" aria-controls="primaryNav">
+          <i class="fas fa-bars" aria-hidden="true"></i>
         </button>
       </div>
     </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <div class="nav-overlay"></div>
   </header>
+
+  <main id="main">
 
   <!-- ==========================================================================
        Hero Section & Lead Capture Form
@@ -208,37 +251,53 @@
   <section id="hero" class="hero-section">
     <div class="container">
       <div class="hero-grid">
-        
+
         <!-- Left Content Column -->
         <div class="hero-content">
-          <div class="hero-badge">
-            <i class="fas fa-shield-halved"></i> Türkiye'nin Yetkili Güvenilir Sigorta Acentesi
+          <div class="hero-badge" data-reveal>
+            <span class="badge-dot" aria-hidden="true"></span>
+            <i class="fas fa-shield-halved" aria-hidden="true"></i> Türkiye'nin Yetkili Güvenilir Sigorta Acentesi
           </div>
-          
-          <h1 class="hero-title">
+
+          <h1 class="hero-title" data-reveal style="--d:60ms">
             Güvenli Yarınlar İçin <span class="gradient-text">Doğru Teminat</span> &amp; En İyi Fiyat
           </h1>
 
-          <p class="hero-description">
-            <strong>Göktürk İlik Sigorta</strong> ile 30+ anlaşmalı sigorta şirketinden araç, sağlık ve ev sigortası fiyatlarını 2 dakikada karşılaştırın. Hasar anında 7/24 yanınızdayız.
+          <p class="hero-rotator-line" data-reveal style="--d:120ms" aria-label="En uygun trafik, kasko, tamamlayıcı sağlık, DASK, konut ve işyeri sigortası teklifi 2 dakikada.">
+            <span aria-hidden="true">En uygun</span>
+            <span class="rotator" aria-hidden="true">
+              <span class="rotator-track" id="heroRotator">
+                <span>Trafik Sigortası</span>
+                <span>Kasko Poliçesi</span>
+                <span>Tamamlayıcı Sağlık</span>
+                <span>DASK &amp; Konut</span>
+                <span>İşyeri Paketi</span>
+                <span>Trafik Sigortası</span>
+              </span>
+            </span>
+            <span aria-hidden="true">teklifi 2 dakikada.</span>
           </p>
 
-          <div class="hero-actions">
-            <a href="#quote" class="btn btn-primary btn-lg">
-              <i class="fas fa-paper-plane"></i> Anında Fiyat Teklifi Al
+          <p class="hero-description" data-reveal style="--d:180ms">
+            <strong>Göktürk İlik Sigorta</strong> ile 30+ anlaşmalı sigorta şirketinden araç, sağlık ve ev sigortası fiyatlarını karşılaştırın. Hasar anında 7/24 yanınızdayız.
+          </p>
+
+          <div class="hero-actions" data-reveal style="--d:240ms">
+            <a href="#quote" class="btn btn-primary btn-lg btn-shine">
+              <i class="fas fa-paper-plane" aria-hidden="true"></i> Anında Fiyat Teklifi Al
             </a>
-            <a href="https://wa.me/905075950731" target="_blank" class="btn btn-whatsapp">
-              <i class="fab fa-whatsapp"></i> WhatsApp Canlı Destek
+            <a href="https://wa.me/905075950731" target="_blank" rel="noopener" class="btn btn-whatsapp btn-shine">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp Canlı Destek
             </a>
           </div>
 
-          <div class="hero-stats">
+          <div class="hero-stats" data-reveal style="--d:300ms">
             <div class="stat-item">
-              <span class="stat-number">5.0 ⭐</span>
+              <span class="stat-number"><span data-count="5" data-decimals="1">0</span> <span class="star-mini">⭐</span></span>
               <span class="stat-label">Google Müşteri Puanı</span>
             </div>
             <div class="stat-item">
-              <span class="stat-number">30+</span>
+              <span class="stat-number"><span data-count="30">0</span>+</span>
               <span class="stat-label">Anlaşmalı Şirket</span>
             </div>
             <div class="stat-item">
@@ -249,85 +308,159 @@
         </div>
 
         <!-- Right Quick Quote Form Card -->
-        <div id="quote" class="hero-form-wrapper">
-          <div class="quote-card">
+        <div id="quote" class="hero-form-wrapper" data-reveal style="--d:160ms">
+          <div class="quote-card" data-tilt>
+            <div class="card-glow" aria-hidden="true"></div>
             <div class="card-header">
-              <h3 id="selectedFormTitle">Trafik Sigortası Hızlı Teklif Al</h3>
+              <h2 id="selectedFormTitle">Trafik Sigortası Hızlı Teklif Al</h2>
               <p>Sigorta türünü seçin, bilgilerinizi girin, en iyi teklifi hazırlayalım.</p>
             </div>
 
             <!-- Insurance Selector Pills -->
-            <div class="insurance-type-selector">
-              <button class="type-pill active" data-type="Trafik Sigortası">
-                <i class="fas fa-car"></i> Trafik
+            <div class="insurance-type-selector" role="group" aria-label="Sigorta türü seçimi">
+              <button type="button" class="type-pill active" data-type="Trafik Sigortası" aria-pressed="true">
+                <i class="fas fa-car" aria-hidden="true"></i> Trafik
               </button>
-              <button class="type-pill" data-type="Kasko Sigortası">
-                <i class="fas fa-car-burst"></i> Kasko
+              <button type="button" class="type-pill" data-type="Kasko Sigortası" aria-pressed="false">
+                <i class="fas fa-car-burst" aria-hidden="true"></i> Kasko
               </button>
-              <button class="type-pill" data-type="Tamamlayıcı Sağlık">
-                <i class="fas fa-user-doctor"></i> Sağlık
+              <button type="button" class="type-pill" data-type="Tamamlayıcı Sağlık" aria-pressed="false">
+                <i class="fas fa-user-doctor" aria-hidden="true"></i> Sağlık
               </button>
-              <button class="type-pill" data-type="DASK Deprem Sigortası">
-                <i class="fas fa-house-crack"></i> DASK
+              <button type="button" class="type-pill" data-type="DASK Deprem Sigortası" aria-pressed="false">
+                <i class="fas fa-house-crack" aria-hidden="true"></i> DASK
               </button>
-              <button class="type-pill" data-type="Konut Sigortası">
-                <i class="fas fa-house-chimney"></i> Konut
+              <button type="button" class="type-pill" data-type="Konut Sigortası" aria-pressed="false">
+                <i class="fas fa-house-chimney" aria-hidden="true"></i> Konut
               </button>
-              <button class="type-pill" data-type="İşyeri Sigortası">
-                <i class="fas fa-building-shield"></i> İşyeri
+              <button type="button" class="type-pill" data-type="İşyeri Sigortası" aria-pressed="false">
+                <i class="fas fa-building-shield" aria-hidden="true"></i> İşyeri
               </button>
             </div>
 
             <!-- Interactive Form -->
-            <form id="quickQuoteForm">
-              
+            <form id="quickQuoteForm" novalidate>
+
               <!-- Plaka (Dinamik Gösterilir) -->
               <div class="form-group" id="plakaGroup">
                 <label class="form-label" for="plakaInput">Araç Plakası</label>
                 <div class="input-wrapper">
-                  <i class="fas fa-id-card input-icon"></i>
-                  <input type="text" id="plakaInput" class="form-control plaka-input" placeholder="34 ABC 123" maxlength="9">
+                  <i class="fas fa-id-card input-icon" aria-hidden="true"></i>
+                  <input type="text" id="plakaInput" name="plaka" class="form-control plaka-input"
+                         placeholder="34ABC123" maxlength="8" autocomplete="off"
+                         aria-describedby="plakaError">
                 </div>
+                <p class="field-error" id="plakaError" role="alert"></p>
               </div>
 
               <!-- Ad Soyad -->
               <div class="form-group">
-                <label class="form-label" for="nameInput">Adınız Soyadınız / Firma Adı</label>
+                <label class="form-label" for="nameInput">Adınız Soyadınız / Firma Adı <span class="req">*</span></label>
                 <div class="input-wrapper">
-                  <i class="fas fa-user input-icon"></i>
-                  <input type="text" id="nameInput" class="form-control" placeholder="Ahmet Yılmaz" required>
+                  <i class="fas fa-user input-icon" aria-hidden="true"></i>
+                  <input type="text" id="nameInput" name="name" class="form-control"
+                         placeholder="Ahmet Yılmaz" autocomplete="name" required
+                         aria-describedby="nameError">
                 </div>
+                <p class="field-error" id="nameError" role="alert"></p>
               </div>
 
               <!-- Telefon -->
               <div class="form-group">
-                <label class="form-label" for="phoneInput">Telefon Numaranız</label>
+                <label class="form-label" for="phoneInput">Telefon Numaranız <span class="req">*</span></label>
                 <div class="input-wrapper">
-                  <i class="fas fa-phone input-icon"></i>
-                  <input type="tel" id="phoneInput" class="form-control" placeholder="05XX XXX XX XX" required>
+                  <i class="fas fa-phone input-icon" aria-hidden="true"></i>
+                  <input type="tel" id="phoneInput" name="phone" class="form-control"
+                         placeholder="0507 595 07 31" inputmode="numeric" autocomplete="tel"
+                         maxlength="14" required aria-describedby="phoneError">
                 </div>
+                <p class="field-error" id="phoneError" role="alert"></p>
               </div>
 
               <!-- TC / VKN -->
               <div class="form-group">
-                <label class="form-label" for="tcInput">TC Kimlik / VKN No (İsteğe Bağlı)</label>
+                <label class="form-label" for="tcInput">TC Kimlik / VKN No <span class="opt">(isteğe bağlı)</span></label>
                 <div class="input-wrapper">
-                  <i class="fas fa-fingerprint input-icon"></i>
-                  <input type="text" id="tcInput" class="form-control" placeholder="Doğru prim teklifi için" maxlength="11">
+                  <i class="fas fa-fingerprint input-icon" aria-hidden="true"></i>
+                  <input type="text" id="tcInput" name="tc" class="form-control"
+                         placeholder="Daha doğru prim teklifi için" inputmode="numeric"
+                         maxlength="11" autocomplete="off" aria-describedby="tcError">
                 </div>
+                <p class="field-error" id="tcError" role="alert"></p>
               </div>
 
-              <button type="submit" class="btn btn-accent" style="width: 100%; font-size: 1.1rem; padding: 1rem;">
-                <i class="fab fa-whatsapp"></i> WhatsApp İle Anında Teklif Al
+              <!-- KVKK Açık Rıza -->
+              <div class="form-consent">
+                <input type="checkbox" id="kvkkConsent" name="kvkk" required aria-describedby="kvkkError">
+                <label for="kvkkConsent">
+                  <a href="kvkk.html" target="_blank" rel="noopener">Aydınlatma Metni</a>'ni okudum;
+                  teklif hazırlanması ve benimle iletişime geçilmesi amacıyla kişisel verilerimin
+                  işlenmesine <strong>açık rıza</strong> veriyorum. <span class="req">*</span>
+                </label>
+              </div>
+              <p class="field-error" id="kvkkError" role="alert"></p>
+
+              <button type="submit" class="btn btn-accent btn-shine btn-block btn-lg">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp İle Anında Teklif Al
               </button>
 
-              <div class="form-note">
-                <i class="fas fa-lock"></i> Kişisel verileriniz KVKK kapsamında %100 güvence altındadır.
-              </div>
+              <p class="form-note">
+                <i class="fas fa-lock" aria-hidden="true"></i>
+                Bilgileriniz yalnızca teklif hazırlamak için kullanılır, üçüncü kişilerle paylaşılmaz.
+              </p>
             </form>
           </div>
         </div>
 
+      </div>
+    </div>
+    <div class="hero-fade" aria-hidden="true"></div>
+  </section>
+
+  <!-- ==========================================================================
+       Branş Şeridi (sonsuz kayan marquee)
+       NOT: Anlaşmalı şirket logolarınız varsa bu şeritteki metinleri
+       <img src="assets/partners/xxx.png"> ile değiştirebilirsiniz.
+       ========================================================================== -->
+  <section class="marquee-section" aria-label="Sunduğumuz sigorta branşları">
+    <div class="marquee" data-marquee>
+      <div class="marquee-track">
+        <span><i class="fas fa-car" aria-hidden="true"></i> Zorunlu Trafik</span>
+        <span><i class="fas fa-car-burst" aria-hidden="true"></i> Genişletilmiş Kasko</span>
+        <span><i class="fas fa-user-doctor" aria-hidden="true"></i> Tamamlayıcı Sağlık</span>
+        <span><i class="fas fa-house-crack" aria-hidden="true"></i> DASK</span>
+        <span><i class="fas fa-house-chimney" aria-hidden="true"></i> Konut</span>
+        <span><i class="fas fa-building-shield" aria-hidden="true"></i> İşyeri</span>
+        <span><i class="fas fa-plane-departure" aria-hidden="true"></i> Seyahat Sağlık</span>
+        <span><i class="fas fa-person-falling" aria-hidden="true"></i> Ferdi Kaza</span>
+        <span><i class="fas fa-truck-fast" aria-hidden="true"></i> Nakliyat</span>
+        <span><i class="fas fa-gavel" aria-hidden="true"></i> Mesleki Sorumluluk</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       Rakamlarla Göktürk İlik Sigorta
+       ========================================================================== -->
+  <section id="numbers" class="numbers-section">
+    <div class="container">
+      <div class="numbers-band" data-reveal>
+        <div class="number-cell">
+          <span class="number-value"><span data-count="30">0</span>+</span>
+          <span class="number-label">Anlaşmalı Sigorta Şirketi</span>
+        </div>
+        <div class="number-cell">
+          <span class="number-value">7/24</span>
+          <span class="number-label">Hasar Destek Hattı</span>
+        </div>
+        <div class="number-cell">
+          <span class="number-value"><span data-count="2">0</span> dk</span>
+          <span class="number-label">Ortalama Teklif Süresi</span>
+        </div>
+        <div class="number-cell">
+          <span class="number-value"><span data-count="10">0</span>+</span>
+          <span class="number-label">Sigorta Branşı</span>
+        </div>
       </div>
     </div>
   </section>
@@ -337,113 +470,101 @@
        ========================================================================== -->
   <section id="services">
     <div class="container">
-      <div class="section-header">
-        <span class="section-badge"><i class="fas fa-award"></i> Kapsamlı Teminatlar</span>
+      <div class="section-header" data-reveal>
+        <span class="section-badge"><i class="fas fa-award" aria-hidden="true"></i> Kapsamlı Teminatlar</span>
         <h2 class="section-title">Göktürk İlik Sigorta <span class="gradient-text">Çözümleri</span></h2>
         <p class="section-subtitle">Tüm yaşam alanlarınızı ve araçlarınızı olası risklere karşı güvence altına alan özel sigorta paketleri.</p>
       </div>
 
       <div class="services-grid">
-        
+
         <!-- Card 1: Trafik -->
-        <article class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-car-side"></i>
-          </div>
+        <article class="service-card" data-reveal data-tilt data-spotlight style="--d:0ms">
+          <div class="service-icon"><i class="fas fa-car-side" aria-hidden="true"></i></div>
           <h3 class="service-title">Zorunlu Trafik Sigortası</h3>
           <p class="service-desc">Karayolları kanunu gereğince araçların üçüncü şahıslara verebileceği bedeni ve maddi zararları teminat altına alır.</p>
           <div class="service-features">
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> 30+ Şirketten En Düşük Fiyat Garantisi</div>
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> Anında Online Poliçe Kesimi</div>
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> İndirimli Hasarsızlık Kademe Koruması</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> 30+ Şirketten En Düşük Fiyat Garantisi</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Anında Online Poliçe Kesimi</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> İndirimli Hasarsızlık Kademe Koruması</div>
           </div>
           <div class="service-action">
-            <a href="#quote" class="btn btn-outline" style="width: 100%;">Teklif Al</a>
+            <button type="button" class="btn btn-outline btn-block" data-quote-type="Trafik Sigortası">Teklif Al</button>
           </div>
         </article>
 
         <!-- Card 2: Kasko -->
-        <article class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-shield-cat"></i>
-          </div>
+        <article class="service-card" data-reveal data-tilt data-spotlight style="--d:80ms">
+          <div class="service-icon"><i class="fas fa-shield-cat" aria-hidden="true"></i></div>
           <h3 class="service-title">Genişletilmiş Kasko</h3>
           <p class="service-desc">Çarpma, çarpışma, yangın, hırsızlık, sel ve terör gibi risklere karşı aracınızı tam güvence altına alan genişletilmiş koruma.</p>
           <div class="service-features">
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> Sınırsız İkame Araç Tedariği</div>
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> Orijinal Parça &amp; Yetkili Servis Garantisi</div>
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> 7/24 Çekici ve Yol Yardım Hizmeti</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Sınırsız İkame Araç Tedariği</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Orijinal Parça &amp; Yetkili Servis Garantisi</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> 7/24 Çekici ve Yol Yardım Hizmeti</div>
           </div>
           <div class="service-action">
-            <a href="#quote" class="btn btn-outline" style="width: 100%;">Teklif Al</a>
+            <button type="button" class="btn btn-outline btn-block" data-quote-type="Kasko Sigortası">Teklif Al</button>
           </div>
         </article>
 
         <!-- Card 3: Tamamlayıcı Sağlık -->
-        <article class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-user-nurse"></i>
-          </div>
+        <article class="service-card" data-reveal data-tilt data-spotlight style="--d:160ms">
+          <div class="service-icon"><i class="fas fa-user-nurse" aria-hidden="true"></i></div>
           <h3 class="service-title">Tamamlayıcı Sağlık (TSS)</h3>
           <p class="service-desc">SGK anlaşmalı A sınıfı özel hastanelerde sıra beklemeden, ek fark ücreti ödemeden tedavi görme ayrıcalığı.</p>
           <div class="service-features">
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> Sınırsız Yatarak Tedavi Teminatı</div>
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> Yılda 10 Sefer Ayakta Tedavi / Muayene</div>
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> Ücretsiz Diş Check-up &amp; Göz Taraması</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Sınırsız Yatarak Tedavi Teminatı</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Yılda 10 Sefer Ayakta Tedavi / Muayene</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Ücretsiz Diş Check-up &amp; Göz Taraması</div>
           </div>
           <div class="service-action">
-            <a href="#quote" class="btn btn-outline" style="width: 100%;">Teklif Al</a>
+            <button type="button" class="btn btn-outline btn-block" data-quote-type="Tamamlayıcı Sağlık">Teklif Al</button>
           </div>
         </article>
 
         <!-- Card 4: DASK & Konut -->
-        <article class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-house-flag"></i>
-          </div>
+        <article class="service-card" data-reveal data-tilt data-spotlight style="--d:0ms">
+          <div class="service-icon"><i class="fas fa-house-flag" aria-hidden="true"></i></div>
           <h3 class="service-title">DASK &amp; Konut Sigortası</h3>
           <p class="service-desc">Evinizi deprem, yangın, su basması, hırsızlık ve tesisat arızalarına karşı güvence altına alan özel ev paketleri.</p>
           <div class="service-features">
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> Zorunlu Deprem (DASK) Poliçe Kesimi</div>
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> Eşya &amp; Bina Yangın Güvencesi</div>
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> Ücretsiz Çilingir &amp; Tesisat Asistanı</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Zorunlu Deprem (DASK) Poliçe Kesimi</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Eşya &amp; Bina Yangın Güvencesi</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Ücretsiz Çilingir &amp; Tesisat Asistanı</div>
           </div>
           <div class="service-action">
-            <a href="#quote" class="btn btn-outline" style="width: 100%;">Teklif Al</a>
+            <button type="button" class="btn btn-outline btn-block" data-quote-type="DASK Deprem Sigortası">Teklif Al</button>
           </div>
         </article>
 
         <!-- Card 5: İşyeri Sigortası -->
-        <article class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-store"></i>
-          </div>
+        <article class="service-card" data-reveal data-tilt data-spotlight style="--d:80ms">
+          <div class="service-icon"><i class="fas fa-store" aria-hidden="true"></i></div>
           <h3 class="service-title">İşyeri &amp; Ticari Paketler</h3>
           <p class="service-desc">Ticari işletmenizi, demirbaşlarınızı ve emtianızı iş durması ve sorumluluk risklerine karşı koruyan ticari çözümler.</p>
           <div class="service-features">
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> İş Durması &amp; Kar Kaybı Teminatı</div>
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> Üçüncü Şahıs Mali Mesuliyet</div>
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> Cam Kırılması ve Hırsızlık Teminatı</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> İş Durması &amp; Kar Kaybı Teminatı</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Üçüncü Şahıs Mali Mesuliyet</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Cam Kırılması ve Hırsızlık Teminatı</div>
           </div>
           <div class="service-action">
-            <a href="#quote" class="btn btn-outline" style="width: 100%;">Teklif Al</a>
+            <button type="button" class="btn btn-outline btn-block" data-quote-type="İşyeri Sigortası">Teklif Al</button>
           </div>
         </article>
 
         <!-- Card 6: Seyahat Sağlık -->
-        <article class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-plane-departure"></i>
-          </div>
+        <article class="service-card" data-reveal data-tilt data-spotlight style="--d:160ms">
+          <div class="service-icon"><i class="fas fa-plane-departure" aria-hidden="true"></i></div>
           <h3 class="service-title">Seyahat Sağlık Sigortası</h3>
           <p class="service-desc">Yurt dışı vize başvuruları (Schengen vb.) ve tatilleriniz için 30.000 € teminatlı zorunlu seyahat sigortası.</p>
           <div class="service-features">
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> Schengen Vize Uyum Garantisi</div>
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> Bagaj Kaybı &amp; Gecikme Teminatı</div>
-            <div class="service-feature-item"><i class="fas fa-check-circle"></i> Anında PDF İngilizce Poliçe Teslimi</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Schengen Vize Uyum Garantisi</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Bagaj Kaybı &amp; Gecikme Teminatı</div>
+            <div class="service-feature-item"><i class="fas fa-check-circle" aria-hidden="true"></i> Anında PDF İngilizce Poliçe Teslimi</div>
           </div>
           <div class="service-action">
-            <a href="#quote" class="btn btn-outline" style="width: 100%;">Teklif Al</a>
+            <button type="button" class="btn btn-outline btn-block" data-quote-type="Seyahat Sağlık Sigortası">Teklif Al</button>
           </div>
         </article>
 
@@ -452,46 +573,75 @@
   </section>
 
   <!-- ==========================================================================
+       Süreç / Nasıl Çalışır?
+       ========================================================================== -->
+  <section id="process">
+    <div class="container">
+      <div class="section-header" data-reveal>
+        <span class="section-badge"><i class="fas fa-route" aria-hidden="true"></i> 3 Adımda Poliçe</span>
+        <h2 class="section-title">Nasıl <span class="gradient-text">Çalışıyoruz?</span></h2>
+        <p class="section-subtitle">Teklif talebinizden poliçenizin elinize ulaşmasına kadar geçen süre ortalama 2 dakika.</p>
+      </div>
+
+      <ol class="process-timeline">
+        <li class="process-step" data-reveal style="--d:0ms">
+          <div class="process-marker"><span>1</span></div>
+          <div class="process-body">
+            <h3>Bilgilerinizi Paylaşın</h3>
+            <p>Plaka ve iletişim bilgilerinizi formdan gönderin ya da doğrudan WhatsApp'tan yazın. Uzun evrak süreci yok.</p>
+          </div>
+        </li>
+        <li class="process-step" data-reveal style="--d:120ms">
+          <div class="process-marker"><span>2</span></div>
+          <div class="process-body">
+            <h3>30+ Şirketi Karşılaştıralım</h3>
+            <p>Danışmanınız tüm anlaşmalı şirketlerin primlerini ve teminat kapsamlarını yan yana koyar, size en doğru seçeneği açıklar.</p>
+          </div>
+        </li>
+        <li class="process-step" data-reveal style="--d:240ms">
+          <div class="process-marker"><span>3</span></div>
+          <div class="process-body">
+            <h3>Poliçeniz Anında Elinizde</h3>
+            <p>Onayınızın ardından poliçe sistemde aktifleşir; PDF nüshası WhatsApp ve e-postanıza saniyeler içinde ulaşır.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
        Why Choose Us Section (Neden Biz?)
        ========================================================================== -->
   <section id="why-us">
     <div class="container">
-      <div class="section-header">
-        <span class="section-badge"><i class="fas fa-star"></i> Acente Farkımız</span>
+      <div class="section-header" data-reveal>
+        <span class="section-badge"><i class="fas fa-star" aria-hidden="true"></i> Acente Farkımız</span>
         <h2 class="section-title">Neden <span class="gradient-text">Göktürk İlik Sigorta?</span></h2>
         <p class="section-subtitle">Biz sadece bir sigorta poliçesi satmıyoruz; en zor anınızda yanınızda olan güvenilir danışmanınız oluyoruz.</p>
       </div>
 
       <div class="why-us-grid">
-        <div class="feature-box">
-          <div class="feature-icon-wrapper">
-            <i class="fas fa-scale-balanced"></i>
-          </div>
-          <h4>30+ Şirket Karşılaştırması</h4>
+        <div class="feature-box" data-reveal data-spotlight style="--d:0ms">
+          <div class="feature-icon-wrapper"><i class="fas fa-scale-balanced" aria-hidden="true"></i></div>
+          <h3>30+ Şirket Karşılaştırması</h3>
           <p>Tüm sigorta devlerinin primlerini aynı anda sorgulayarak bütçenize en uygun opsiyonu sunuyoruz.</p>
         </div>
 
-        <div class="feature-box">
-          <div class="feature-icon-wrapper">
-            <i class="fas fa-headset"></i>
-          </div>
-          <h4>7/24 Kesintisiz Hasar Danışmanı</h4>
+        <div class="feature-box" data-reveal data-spotlight style="--d:100ms">
+          <div class="feature-icon-wrapper"><i class="fas fa-headset" aria-hidden="true"></i></div>
+          <h3>7/24 Kesintisiz Hasar Danışmanı</h3>
           <p>Kaza ve hasar anında hatta beklemeden doğrudan kişisel sigorta uzmanınıza ulaşırsınız.</p>
         </div>
 
-        <div class="feature-box">
-          <div class="feature-icon-wrapper">
-            <i class="fas fa-user-shield"></i>
-          </div>
-          <h4>Eksiksiz Doğru Teminat</h4>
+        <div class="feature-box" data-reveal data-spotlight style="--d:200ms">
+          <div class="feature-icon-wrapper"><i class="fas fa-user-shield" aria-hidden="true"></i></div>
+          <h3>Eksiksiz Doğru Teminat</h3>
           <p>Sürpriz muafiyetlerle karşılaşmamanız için poliçe detaylarını şeffaflıkla analiz ediyoruz.</p>
         </div>
 
-        <div class="feature-box">
-          <div class="feature-icon-wrapper">
-            <i class="fas fa-bolt"></i>
-          </div>
-          <h4>Dijital &amp; Hızlı Teslimat</h4>
+        <div class="feature-box" data-reveal data-spotlight style="--d:300ms">
+          <div class="feature-icon-wrapper"><i class="fas fa-bolt" aria-hidden="true"></i></div>
+          <h3>Dijital &amp; Hızlı Teslimat</h3>
           <p>Poliçeniz saniyeler içinde hazırlanır, WhatsApp ve E-posta adresinize anında iletilir.</p>
         </div>
       </div>
@@ -503,14 +653,14 @@
        ========================================================================== -->
   <section id="damage-guide">
     <div class="container">
-      <div class="damage-banner">
+      <div class="damage-banner" data-reveal>
         <div class="banner-content">
-          <span class="section-badge" style="background: rgba(255, 183, 3, 0.2); border-color: var(--accent); color: var(--accent);">
-            <i class="fas fa-triangle-exclamation"></i> Kaza Anı Rehberi
+          <span class="section-badge badge-warn">
+            <i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Kaza Anı Rehberi
           </span>
-          <h3>Hasar Anında Ne Yapmalısınız?</h3>
+          <h2>Hasar Anında Ne Yapmalısınız?</h2>
           <p>Kaza veya hasar durumunda panik yapmayın. Göktürk İlik Sigorta güvencesiyle şu adımları izleyin:</p>
-          
+
           <div class="steps-list">
             <div class="step-item">
               <span class="step-number">1</span>
@@ -532,13 +682,13 @@
         </div>
 
         <div class="banner-card-box">
-          <i class="fas fa-phone-volume" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
-          <h4>7/24 Acil Hasar Destek Hattı</h4>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">Hatta beklemeden doğrudan temsilcinize bağlanın:</p>
-          <a href="tel:05075950731" class="emergency-phone">0507 595 07 31</a>
-          <p style="margin-top: 0.3rem; font-size: 0.95rem; color: var(--text-muted);">Ofis: <a href="tel:03422323202" style="color: var(--accent); font-weight: 600;">0342 232 32 02</a></p>
-          <a href="https://wa.me/905075950731" target="_blank" class="btn btn-whatsapp" style="width: 100%; margin-top: 0.8rem;">
-            <i class="fab fa-whatsapp"></i> Hasar Bildirimi Yap
+          <div class="pulse-ring" aria-hidden="true"><i class="fas fa-phone-volume"></i></div>
+          <h3>7/24 Acil Hasar Destek Hattı</h3>
+          <p class="muted-sm">Hatta beklemeden doğrudan temsilcinize bağlanın:</p>
+          <a href="tel:+905075950731" class="emergency-phone">0507 595 07 31</a>
+          <p class="muted-sm">Ofis: <a href="tel:+903422323202" class="office-phone">0342 232 32 02</a></p>
+          <a href="https://wa.me/905075950731" target="_blank" rel="noopener" class="btn btn-whatsapp btn-shine btn-block mt-1">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i> Hasar Bildirimi Yap
           </a>
         </div>
       </div>
@@ -550,56 +700,64 @@
        ========================================================================== -->
   <section id="faq">
     <div class="container">
-      <div class="section-header">
-        <span class="section-badge"><i class="fas fa-circle-question"></i> Bilgi Bankası</span>
+      <div class="section-header" data-reveal>
+        <span class="section-badge"><i class="fas fa-circle-question" aria-hidden="true"></i> Bilgi Bankası</span>
         <h2 class="section-title">Sıkça Sorulan <span class="gradient-text">Sorular</span></h2>
         <p class="section-subtitle">Sigorta poliçeleri ve süreçlerimiz hakkında merak ettiğiniz tüm yanıtlar.</p>
       </div>
 
       <div class="faq-container">
-        
-        <div class="faq-item active">
-          <div class="faq-header">
-            <span>Göktürk İlik Sigorta ile teklif almak ücretli midir?</span>
-            <div class="faq-toggle-icon"><i class="fas fa-chevron-down"></i></div>
-          </div>
-          <div class="faq-body" style="max-height: 200px;">
+
+        <div class="faq-item" data-reveal>
+          <h3 class="faq-heading">
+            <button type="button" class="faq-header" aria-expanded="false" aria-controls="faq1">
+              <span>Göktürk İlik Sigorta ile teklif almak ücretli midir?</span>
+              <span class="faq-toggle-icon" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+            </button>
+          </h3>
+          <div class="faq-body" id="faq1" role="region">
             <div class="faq-body-content">
               Hayır, Göktürk İlik Sigorta üzerinden teklif sorgulamak ve prim karşılaştırması yapmak tamamen <strong>ücretsizdir</strong>. Danışmanlarımız sizin için en uygun fiyatlı ve en yüksek teminatlı poliçeyi ücretsiz analiz eder.
             </div>
           </div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-header">
-            <span>Zorunlu Trafik Sigortası ile Kasko arasındaki fark nedir?</span>
-            <div class="faq-toggle-icon"><i class="fas fa-chevron-down"></i></div>
-          </div>
-          <div class="faq-body">
+        <div class="faq-item" data-reveal style="--d:80ms">
+          <h3 class="faq-heading">
+            <button type="button" class="faq-header" aria-expanded="false" aria-controls="faq2">
+              <span>Zorunlu Trafik Sigortası ile Kasko arasındaki fark nedir?</span>
+              <span class="faq-toggle-icon" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+            </button>
+          </h3>
+          <div class="faq-body" id="faq2" role="region">
             <div class="faq-body-content">
               Trafik sigortası yasal olarak zorunludur ve kaza anında <strong>karşı tarafa ve üçüncü şahıslara verdiğiniz zararları</strong> karşılar. Kasko ise zorunlu değildir ancak kaza, hırsızlık, yangın veya doğal afet durumunda <strong>kendi aracınızda oluşan zararları</strong> teminat altına alır.
             </div>
           </div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-header">
-            <span>Hasarsızlık indirimi hakkım yeni aracıma aktarılır mı?</span>
-            <div class="faq-toggle-icon"><i class="fas fa-chevron-down"></i></div>
-          </div>
-          <div class="faq-body">
+        <div class="faq-item" data-reveal style="--d:160ms">
+          <h3 class="faq-heading">
+            <button type="button" class="faq-header" aria-expanded="false" aria-controls="faq3">
+              <span>Hasarsızlık indirimi hakkım yeni aracıma aktarılır mı?</span>
+              <span class="faq-toggle-icon" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+            </button>
+          </h3>
+          <div class="faq-body" id="faq3" role="region">
             <div class="faq-body-content">
               Evet! Eski aracınızı sattığınızda veya değiştirdiğinizde kazandığınız %20 ile %60 arasındaki hasarsızlık indirim basamağınız yeni aracınıza transfer edilir. Göktürk İlik Sigorta uzmanları bu hakkınızı eksiksiz tanımlar.
             </div>
           </div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-header">
-            <span>Poliçem ne kadar sürede aktifleşir ve tarafıma nasıl ulaştırılır?</span>
-            <div class="faq-toggle-icon"><i class="fas fa-chevron-down"></i></div>
-          </div>
-          <div class="faq-body">
+        <div class="faq-item" data-reveal style="--d:240ms">
+          <h3 class="faq-heading">
+            <button type="button" class="faq-header" aria-expanded="false" aria-controls="faq4">
+              <span>Poliçem ne kadar sürede aktifleşir ve tarafıma nasıl ulaştırılır?</span>
+              <span class="faq-toggle-icon" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+            </button>
+          </h3>
+          <div class="faq-body" id="faq4" role="region">
             <div class="faq-body-content">
               Onayınızın ardından poliçeniz EGM / TRAMER sisteminde <strong>anında aktif hale gelir</strong>. Poliçe aslınız ve makbuzunuz WhatsApp üzerinden PDF olarak ve E-posta adresinize anında gönderilir.
             </div>
@@ -615,54 +773,46 @@
        ========================================================================== -->
   <section id="contact">
     <div class="container">
-      <div class="section-header">
-        <span class="section-badge"><i class="fas fa-location-dot"></i> İletişim &amp; Adres</span>
+      <div class="section-header" data-reveal>
+        <span class="section-badge"><i class="fas fa-location-dot" aria-hidden="true"></i> İletişim &amp; Adres</span>
         <h2 class="section-title">Bize <span class="gradient-text">Ulaşın</span></h2>
         <p class="section-subtitle">Ofisimizde bir kahve eşliğinde sigorta ihtiyaçlarınızı planlayalım.</p>
       </div>
 
       <div class="contact-grid">
-        <div class="contact-info-card">
-          
+        <div class="contact-info-card" data-reveal>
+
           <div class="contact-item">
-            <div class="contact-icon">
-              <i class="fas fa-map-location-dot"></i>
-            </div>
+            <div class="contact-icon"><i class="fas fa-map-location-dot" aria-hidden="true"></i></div>
             <div class="contact-details">
-              <h5>Acente Adresimiz</h5>
+              <h3>Acente Adresimiz</h3>
               <p>İncilipınar Mahallesi, Şht. Mehmet Öter Cd. Kazaz İş Merkezi A Blok Kat 2 No: 1, 27500 Şehitkamil / Gaziantep</p>
-              <a href="https://share.google/C98KDuv9LDrHgTm6s" target="_blank" class="map-direct-btn" title="Google Haritalar Yol Tarifi">
-                <i class="fas fa-arrow-up-right-from-square"></i> Google Haritalar'da Yol Tarifi Al
+              <a href="https://share.google/C98KDuv9LDrHgTm6s" target="_blank" rel="noopener" class="map-direct-btn" title="Google Haritalar Yol Tarifi">
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i> Google Haritalar'da Yol Tarifi Al
               </a>
             </div>
           </div>
 
           <div class="contact-item">
-            <div class="contact-icon">
-              <i class="fas fa-phone"></i>
-            </div>
+            <div class="contact-icon"><i class="fas fa-phone" aria-hidden="true"></i></div>
             <div class="contact-details">
-              <h5>İletişim Numaraları</h5>
-              <p>GSM / WhatsApp: <a href="tel:05075950731">0507 595 07 31</a><br>Ofis: <a href="tel:03422323202">0342 232 32 02</a></p>
+              <h3>İletişim Numaraları</h3>
+              <p>GSM / WhatsApp: <a href="tel:+905075950731">0507 595 07 31</a><br>Ofis: <a href="tel:+903422323202">0342 232 32 02</a></p>
             </div>
           </div>
 
           <div class="contact-item">
-            <div class="contact-icon">
-              <i class="fas fa-envelope"></i>
-            </div>
+            <div class="contact-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
             <div class="contact-details">
-              <h5>E-Posta Adresimiz</h5>
+              <h3>E-Posta Adresimiz</h3>
               <p><a href="mailto:iliksigorta@hotmail.com">iliksigorta@hotmail.com</a></p>
             </div>
           </div>
 
           <div class="contact-item">
-            <div class="contact-icon">
-              <i class="fas fa-clock"></i>
-            </div>
+            <div class="contact-icon"><i class="fas fa-clock" aria-hidden="true"></i></div>
             <div class="contact-details">
-              <h5>Çalışma Saatleri</h5>
+              <h3>Çalışma Saatleri</h3>
               <p>7/24 Açık (24 Saat Kesintisiz Danışmanlık)</p>
             </div>
           </div>
@@ -670,14 +820,15 @@
         </div>
 
         <!-- Google Maps Location Frame -->
-        <div class="map-container">
-          <a href="https://share.google/C98KDuv9LDrHgTm6s" target="_blank" class="map-overlay-badge" title="Google Haritalar'da Aç">
-            <i class="fas fa-location-dot"></i> Google Haritalar'da Aç <i class="fas fa-external-link-alt"></i>
+        <div class="map-container" data-reveal style="--d:120ms">
+          <a href="https://share.google/C98KDuv9LDrHgTm6s" target="_blank" rel="noopener" class="map-overlay-badge" title="Google Haritalar'da Aç">
+            <i class="fas fa-location-dot" aria-hidden="true"></i> Google Haritalar'da Aç <i class="fas fa-external-link-alt" aria-hidden="true"></i>
           </a>
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3179.9868846175!2d37.3755!3d37.0662!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1531e133a886a111%3A0x7d6f51952a22fa1d!2s%C4%B0ncilip%C4%B1nar%2C%20%C5%9Eht.%20Mehmet%20%C3%96ter%20Cd.%20Kazaz%20%C4%B0%C5%9F%20Merkezi%2C%2027500%20%C5%9Eehitkamil%2FGaziantep!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str" 
-            allowfullscreen="" 
-            loading="lazy" 
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3179.9868846175!2d37.3755!3d37.0662!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1531e133a886a111%3A0x7d6f51952a22fa1d!2s%C4%B0ncilip%C4%B1nar%2C%20%C5%9Eht.%20Mehmet%20%C3%96ter%20Cd.%20Kazaz%20%C4%B0%C5%9F%20Merkezi%2C%2027500%20%C5%9Eehitkamil%2FGaziantep!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
             title="Göktürk İlik Sigorta Gaziantep Harita Konumu">
           </iframe>
         </div>
@@ -686,16 +837,18 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ==========================================================================
        Footer
        ========================================================================== -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        
+
         <div class="footer-brand">
           <a href="#hero" class="brand-logo">
-            <img src="assets/logo.png" alt="Göktürk İlik Sigorta Logo" width="220" height="60">
+            <img src="assets/logo.png" alt="Göktürk İlik Sigorta Logo" width="880" height="349" loading="lazy">
           </a>
           <p class="footer-desc">
             Göktürk İlik Sigorta; 30'dan fazla sigorta acenteliği ile araç, sağlık, ev ve işyeri alanında kişiye ve kuruma özel en uygun teminatlı sigorta çözümleri sunar.
@@ -703,7 +856,7 @@
         </div>
 
         <div>
-          <h4 class="footer-title">Sigorta Ürünleri</h4>
+          <h2 class="footer-title">Sigorta Ürünleri</h2>
           <div class="footer-links">
             <a href="#quote">Trafik Sigortası</a>
             <a href="#quote">Kasko Sigortası</a>
@@ -714,58 +867,85 @@
         </div>
 
         <div>
-          <h4 class="footer-title">Hızlı Bağlantılar</h4>
+          <h2 class="footer-title">Hızlı Bağlantılar</h2>
           <div class="footer-links">
             <a href="#hero">Anasayfa</a>
+            <a href="#process">Nasıl Çalışır?</a>
             <a href="#why-us">Neden Biz?</a>
             <a href="#damage-guide">Hasar Rehberi</a>
             <a href="#faq">SSS</a>
-            <a href="#contact">İletişim</a>
+            <a href="kvkk.html">KVKK &amp; Gizlilik</a>
           </div>
         </div>
 
         <div>
-          <h4 class="footer-title">Sosyal Medya &amp; İletişim</h4>
-          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+          <h2 class="footer-title">Sosyal Medya &amp; İletişim</h2>
+          <p class="muted-sm mb-1">
             Güncel sigorta indirimleri ve kampanya duyuruları için takip edin.
           </p>
-          <div style="display: flex; gap: 0.8rem; font-size: 1.3rem;">
-            <a href="https://www.instagram.com/gokturkiliksigorta/" target="_blank" style="color: var(--accent);" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/905075950731" target="_blank" style="color: var(--success);" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="tel:03422323202" style="color: var(--primary-light);" title="Ofis Telefonu"><i class="fas fa-phone"></i></a>
+          <div class="social-row">
+            <a href="https://www.instagram.com/gokturkiliksigorta/" target="_blank" rel="noopener" class="social-btn ig" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="https://wa.me/905075950731" target="_blank" rel="noopener" class="social-btn wa" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+            <a href="tel:+903422323202" class="social-btn tel" aria-label="Ofis Telefonu"><i class="fas fa-phone" aria-hidden="true"></i></a>
+            <a href="mailto:iliksigorta@hotmail.com" class="social-btn mail" aria-label="E-posta"><i class="fas fa-envelope" aria-hidden="true"></i></a>
           </div>
         </div>
 
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 Göktürk İlik Sigorta Aracılık Hizmetleri. Tüm hakları saklıdır.</p>
-        <p>Gaziantep Şehitkamil Yetkili Sigorta Acentesi</p>
+        <p>&copy; <span id="currentYear">2026</span> Göktürk İlik Sigorta Aracılık Hizmetleri. Tüm hakları saklıdır.</p>
+        <p>Gaziantep Şehitkamil Yetkili Sigorta Acentesi &middot; <a href="kvkk.html">Aydınlatma Metni</a></p>
       </div>
     </div>
   </footer>
 
   <!-- Floating WhatsApp CTA Widget -->
-  <a href="https://wa.me/905075950731" target="_blank" class="floating-whatsapp" title="WhatsApp Canlı Danışman">
-    <i class="fab fa-whatsapp"></i>
+  <a href="https://wa.me/905075950731" target="_blank" rel="noopener" class="floating-whatsapp" aria-label="WhatsApp Canlı Danışman">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
   </a>
+
+  <!-- Back to top -->
+  <button type="button" class="back-to-top" aria-label="Sayfanın başına dön">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </button>
 
   <!-- Mobile Quick Action Bar (Floating on mobile screens <= 768px) -->
   <div class="mobile-action-bar">
-    <a href="tel:05075950731" class="mobile-action-btn phone">
-      <i class="fas fa-phone-alt"></i>
+    <a href="tel:+905075950731" class="mobile-action-btn phone">
+      <i class="fas fa-phone-alt" aria-hidden="true"></i>
       <span>Hemen Ara</span>
     </a>
-    <a href="https://wa.me/905075950731" target="_blank" class="mobile-action-btn whatsapp">
-      <i class="fab fa-whatsapp"></i>
+    <a href="https://wa.me/905075950731" target="_blank" rel="noopener" class="mobile-action-btn whatsapp">
+      <i class="fab fa-whatsapp" aria-hidden="true"></i>
       <span>WhatsApp</span>
     </a>
     <a href="#quote" class="mobile-action-btn quote">
-      <i class="fas fa-bolt"></i>
+      <i class="fas fa-bolt" aria-hidden="true"></i>
       <span>Hızlı Teklif</span>
     </a>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Başarı modalı -->
+  <div class="modal-backdrop" id="successModal" role="dialog" aria-modal="true"
+       aria-labelledby="successModalTitle" hidden>
+    <div class="modal-card">
+      <button type="button" class="modal-close" id="modalCloseX" aria-label="Kapat">
+        <i class="fas fa-xmark" aria-hidden="true"></i>
+      </button>
+      <div class="modal-icon"><i class="fas fa-check-circle" aria-hidden="true"></i></div>
+      <h2 id="successModalTitle">Teklif Talebiniz Hazır!</h2>
+      <p class="modal-text">
+        <strong id="modalType">Trafik Sigortası</strong>
+        <span id="modalHint">için hazırlanan talebiniz oluşturuldu. Aşağıdaki butona dokunarak WhatsApp hattımıza iletebilirsiniz.</span>
+      </p>
+      <a href="#" target="_blank" rel="noopener" class="btn btn-whatsapp btn-shine btn-block" id="modalRedirectBtn">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp'ta Aç &amp; Teklifi Gönder
+      </a>
+      <button type="button" class="btn btn-outline btn-block mt-075" id="closeModalBtn">Kapat</button>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
