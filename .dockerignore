@@ -1,0 +1,10 @@
+.git
+.gitignore
+.claude
+node_modules
+README.md
+convert_logo.py
+
+# Yüksek çözünürlüklü kaynaklar ve iç belgeler yayına çıkmasın
+assets/source
+*.pdf
