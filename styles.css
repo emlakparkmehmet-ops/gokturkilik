@@ -595,6 +595,12 @@ section {
   align-items: center;
 }
 
+/* Grid ogelerinin varsayilan `min-width: auto` degeri, teklif kartindaki
+   yatay kaydirmali sigorta turu seridinin min-content genisligini (~600px)
+   yukari tasiyip izi viewport'tan genis yapiyordu. Dar ekranlarda sayfa bu
+   yuzden yatay kayiyordu. */
+.hero-grid > * { min-width: 0; }
+
 .hero-content {
   display: flex;
   flex-direction: column;
@@ -721,6 +727,7 @@ section {
    Teklif kartı
    ========================================================================== */
 .quote-card {
+  min-width: 0;
   background: var(--bg-card);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -1067,9 +1074,13 @@ section {
    ========================================================================== */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  /* min() olmadan 320px'lik taban, 320-360px genisligindeki telefonlarda
+     kapsayiciyi asip yatay kaydirma yaratiyor. */
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
   gap: 2rem;
 }
+
+.services-grid > *, .why-us-grid > *, .contact-grid > *, .footer-grid > * { min-width: 0; }
 
 .service-card {
   background: var(--bg-card);
@@ -1699,6 +1710,7 @@ section {
 .splash-screen {
   position: fixed;
   inset: 0;
+  overflow: hidden; /* dekoratif parlama dar ekranlarda tasmasin */
   background: radial-gradient(circle at center, #0F1B3B 0%, #060B1A 85%);
   z-index: 99999;
   display: flex;
@@ -1725,7 +1737,8 @@ section {
   align-items: center;
   text-align: center;
   padding: 2rem;
-  max-width: 600px;
+  max-width: min(600px, 100%);
+  min-width: 0;
   position: relative;
 }
 
@@ -2047,6 +2060,9 @@ section {
 @media (max-width: 1100px) {
   .nav-links { gap: 1.25rem; }
   .nav-link { font-size: 0.9rem; }
+  /* 7 menu baglantisi + iki buton 1024px'e sigmiyordu; ikincil CTA gizlenir
+     ("Hizli Arama" mobil aksiyon cubugunda ve iletisim bolumunde zaten var). */
+  .nav-actions .btn-outline { display: none; }
 }
 
 @media (max-width: 1024px) {
@@ -2173,6 +2189,17 @@ section {
 
   .footer { padding-bottom: 6rem; }
   .footer-bottom { justify-content: center; text-align: center; }
+}
+
+/* 320-400px arasi dar telefonlar: header ogeleri yan yana sigmiyordu */
+@media (max-width: 400px) {
+  .brand-logo { height: 40px; }
+  .nav-actions { gap: 0.5rem; }
+  .nav-actions .btn-accent { padding: 0.6rem 0.8rem; font-size: 0.82rem; }
+  .mobile-toggler { width: 40px; height: 40px; font-size: 1.1rem; }
+  .star-burst { width: 220px; height: 220px; }
+  .star-ring { width: 160px; height: 160px; }
+  .splash-content { padding: 1.25rem; }
 }
 
 @media (max-width: 480px) {
