@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /assets/source/
 
-Sitemap: https://gokturkiliksigorta.com/sitemap.xml
+Sitemap: https://www.gokturkiliksigorta.com/sitemap.xml
